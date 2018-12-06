@@ -32,7 +32,11 @@ export default class Post extends Component {
   }
   render() {
     return (
-      <Query query={POSTS_QUERY}>{query => this.renderResponse(query)}</Query>
+      <div>
+        <h1>Recent Posts</h1>
+        <Query query={POSTS_QUERY}>{query => this.renderResponse(query)}</Query>
+        <Link to={'/post/new'}>Create new post</Link>
+      </div>
     )
   }
 }
