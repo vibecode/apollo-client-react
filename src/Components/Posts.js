@@ -33,9 +33,14 @@ export default class Post extends Component {
   render() {
     return (
       <div>
+        <Link to={'/post/new'} className="new_post_button">
+          Create new post
+        </Link>
+
         <h1>Recent Posts</h1>
-        <Query query={POSTS_QUERY}>{query => this.renderResponse(query)}</Query>
-        <Link to={'/post/new'}>Create new post</Link>
+        <Query query={POSTS_QUERY}>
+          {query => this.renderResponse(query)}
+        </Query>
       </div>
     )
   }

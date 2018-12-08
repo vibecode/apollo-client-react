@@ -35,7 +35,6 @@ class Post extends PureComponent {
           <h1>Edit Post</h1>
           <UpdatePost post={post} />
         </section>
-        ё
       </div>
     )
   }

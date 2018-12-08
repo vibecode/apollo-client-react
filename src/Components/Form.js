@@ -46,7 +46,7 @@ class Form extends React.Component {
           id=""
           cols="30"
           rows="10"
-          placeholder="body"
+          placeholder="Body"
           onChange={this.handleInput}
         />
         <button>Submit</button>
