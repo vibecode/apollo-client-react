@@ -2,8 +2,13 @@ import React from 'react'
 
 class Form extends React.Component {
   state = {
-    title: '',
-    body: ''
+    id: this.props.post.id || '',
+    title: this.props.post.title || '',
+    body: this.props.post.body || ''
+  }
+
+  static defaultProps = {
+    post: {}
   }
 
   handleInput = ev => {
@@ -11,13 +16,14 @@ class Form extends React.Component {
   }
 
   handleSubmit = async ev => {
-    const { title, body } = this.state
+    const { id, title, body } = this.state
     ev.preventDefault()
 
     await this.props.queryCallback({
       variables: {
         title,
-        body
+        body,
+        id
       }
     })
 

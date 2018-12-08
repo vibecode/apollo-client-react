@@ -3,8 +3,8 @@ import './App.css'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Posts from './Components/Posts/Posts'
-import Post from './Components/Posts/Post'
+import Posts from './Components/Posts'
+import Post from './Components/Post'
 import NewPost from './Components/NewPost'
 
 const client = new ApolloClient({

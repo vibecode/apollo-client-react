@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
+import UpdatePost from './UpdatePost'
 
 const POST_QUERY = gql`
   query post($id: ID!) {
@@ -26,8 +27,15 @@ class Post extends PureComponent {
 
     return (
       <div>
-        <h1>{post.title}</h1>
-        <p>{post.body}</p>
+        <section>
+          <h1>{post.title}</h1>
+          <p>{post.body}</p>
+        </section>
+        <section>
+          <h1>Edit Post</h1>
+          <UpdatePost post={post} />
+        </section>
+        ё
       </div>
     )
   }
@@ -36,7 +44,9 @@ class Post extends PureComponent {
     const { id } = this.props.match.params
     return (
       <Query query={POST_QUERY} variables={{ id }}>
-        {(loading, err, data) => this.renderResponse(loading, err, data)}
+        {(loading, err, data) =>
+          this.renderResponse(loading, err, data)
+        }
       </Query>
     )
   }
