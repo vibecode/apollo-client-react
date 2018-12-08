@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import UpdatePost from './UpdatePost'
+import EditMode from './EditMode'
 
 const POST_QUERY = gql`
   query post($id: ID!) {
@@ -10,6 +11,8 @@ const POST_QUERY = gql`
       title
       body
     }
+
+    isEditMode @client
   }
 `
 
@@ -23,30 +26,37 @@ class Post extends PureComponent {
       return <div>Error</div>
     }
 
-    const { post } = data
+    const { post, isEditMode } = data
 
     return (
-      <div>
-        <section>
-          <h1>{post.title}</h1>
-          <p>{post.body}</p>
-        </section>
-        <section>
-          <h1>Edit Post</h1>
-          <UpdatePost post={post} />
-        </section>
-      </div>
+      <section>
+        {isEditMode ? (
+          <Fragment>
+            <h1>Edit post</h1>
+            <UpdatePost post={post} />
+          </Fragment>
+        ) : (
+          <Fragment>
+            <h1>{post.title}</h1>
+            <div>{post.body}</div>
+          </Fragment>
+        )}
+        <EditMode isEditMode={isEditMode} />
+      </section>
     )
   }
 
   render() {
     const { id } = this.props.match.params
+
     return (
-      <Query query={POST_QUERY} variables={{ id }}>
-        {(loading, err, data) =>
-          this.renderResponse(loading, err, data)
-        }
-      </Query>
+      <div>
+        <Query query={POST_QUERY} variables={{ id }}>
+          {(loading, err, data) => {
+            return this.renderResponse(loading, err, data)
+          }}
+        </Query>
+      </div>
     )
   }
 }

@@ -12,7 +12,11 @@ import Post from './Components/Post'
 import NewPost from './Components/NewPost'
 
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_APOLLO_CLIENT_ENDPOINT
+  uri: process.env.REACT_APP_APOLLO_CLIENT_ENDPOINT,
+  clientState: {
+    defaults: { isEditMode: false },
+    resolvers: {}
+  }
 })
 class App extends Component {
   render() {
