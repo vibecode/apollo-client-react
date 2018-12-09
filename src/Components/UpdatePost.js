@@ -28,10 +28,15 @@ export class UpdatePost extends PureComponent {
   render() {
     return (
       <Mutation mutation={UPDATE_POST}>
-        {updateCb => (
+        {(updateCb, result) => (
           <Form
             post={this.props.post}
             queryCallback={updateCb}
+            onSuccess={() =>
+              result.client.writeData({
+                data: { isEditMode: false }
+              })
+            }
           />
         )}
       </Mutation>

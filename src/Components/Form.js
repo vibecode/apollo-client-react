@@ -8,7 +8,8 @@ class Form extends React.Component {
   }
 
   static defaultProps = {
-    post: {}
+    post: {},
+    onSuccess: () => null
   }
 
   handleInput = ev => {
@@ -27,7 +28,7 @@ class Form extends React.Component {
       }
     })
 
-    this.setState({ title: '', body: '' })
+    this.props.onSuccess()
   }
 
   render() {
