@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import Form from './Form'
@@ -19,7 +20,14 @@ export class NewPost extends PureComponent {
       <div>
         <h1>New post</h1>
         <Mutation mutation={NEW_POST}>
-          {createPost => <Form queryCallback={createPost} />}
+          {(createPost, result) => {
+            return (
+              <Form
+                queryCallback={createPost}
+                onSuccess={() => this.props.history.push('/')} //redirect to index
+              />
+            )
+          }}
         </Mutation>
       </div>
     )

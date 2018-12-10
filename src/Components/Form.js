@@ -20,15 +20,19 @@ class Form extends React.Component {
     const { id, title, body } = this.state
     ev.preventDefault()
 
-    await this.props.queryCallback({
-      variables: {
-        title,
-        body,
-        id
-      }
-    })
+    try {
+      await this.props.queryCallback({
+        variables: {
+          title,
+          body,
+          id
+        }
+      })
 
-    this.props.onSuccess()
+      this.props.onSuccess()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {

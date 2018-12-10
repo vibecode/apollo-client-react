@@ -4,18 +4,10 @@ import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 
 const UPDATE_POST = gql`
-  mutation updatePost(
-    $id: ID!
-    $title: String
-    $body: String
-  ) {
+  mutation updatePost($id: ID!, $title: String, $body: String) {
     updatePost(
       where: { id: $id }
-      data: {
-        status: PUBLISHED
-        title: $title
-        body: $body
-      }
+      data: { status: PUBLISHED, title: $title, body: $body }
     ) {
       title
       body
@@ -23,7 +15,6 @@ const UPDATE_POST = gql`
     }
   }
 `
-
 export class UpdatePost extends PureComponent {
   render() {
     return (
