@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import { Redirect } from 'react-router-dom'
 import gql from 'graphql-tag'
 import { Mutation } from 'react-apollo'
 import Form from './Form'
@@ -10,6 +9,7 @@ const NEW_POST = gql`
       title
       body
       id
+      check
     }
   }
 `
