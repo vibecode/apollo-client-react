@@ -2,16 +2,10 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 import { Link } from 'react-router-dom'
+import POSTS_QUERY from '../Queries/Posts.graphql'
 
-const POSTS_QUERY = gql`
-  query allPosts($skip: Int) {
-    posts(orderBy: createdAt_DESC, first: 10, skip: $skip) {
-      id
-      title
-      body
-      createdAt
-    }
-  }
+const POSTS_QUERY_STRING = gql`
+  ${POSTS_QUERY}
 `
 
 export default class Post extends Component {
@@ -64,7 +58,9 @@ export default class Post extends Component {
         </Link>
 
         <h1>Recent Posts</h1>
-        <Query query={POSTS_QUERY}>{query => this.renderResponse(query)}</Query>
+        <Query query={POSTS_QUERY_STRING}>
+          {query => this.renderResponse(query)}
+        </Query>
       </div>
     )
   }
