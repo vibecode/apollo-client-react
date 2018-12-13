@@ -3,18 +3,7 @@ import gql from 'graphql-tag'
 import { Query, Mutation } from 'react-apollo'
 import UpdatePost from './UpdatePost'
 import EditMode from './EditMode'
-
-const POST_QUERY = gql`
-  query post($id: ID!) {
-    post(where: { id: $id }) {
-      id
-      title
-      body
-    }
-
-    isEditMode @client
-  }
-`
+import POST_QUERY from '../Queries/Post.graphql'
 
 const UPDATE_POST = gql`
   mutation updatePost($check: Boolean, $id: ID!) {
